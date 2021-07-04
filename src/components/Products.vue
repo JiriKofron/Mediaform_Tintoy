@@ -4,6 +4,8 @@
     <section class="produkty__zobrazeni">
       <input class="produkty__zobrazeni__search" v-model="search" />
       <p>Hledani: {{ search }}</p>
+      <button v-on:click="reset">Reset</button>
+      <button>Clear cart</button>
       <Product
         v-for="item in searchProducts"
         v-bind:key="item.name"
@@ -14,51 +16,29 @@
 </template>
 
 <script>
-import Product from "@/components/Product.vue";
+import Product from '@/components/Product.vue';
 // const axios = require('axios');
 
 export default {
-  name: "Products",
+  name: 'Products',
   components: {
     Product,
   },
   data() {
     return {
-      id: "",
-      title: "",
-      description: "",
-      imageUrl: "",
-      price: "",
-      search: "",
-      items: [
-        {
-          id: 0,
-          count: 0,
-          name: "prvni",
-          popis: "Lorem ipsum prvni",
-          price: 49,
-        },
-        {
-          id: 1,
-          count: 0,
-          name: "druhy",
-          popis: "Lorem ipsum druhy",
-          price: 29,
-        },
-        {
-          id: 2,
-          count: 0,
-          name: "treti",
-          popis: "Lorem ipsum treti",
-          price: 89,
-        },
-      ],
+      search: '',
     };
+  },
+  methods: {
+    reset() {
+      localStorage.vuex = {};
+      //localStorage.vuex.products = [];
+    },
   },
   computed: {
     searchProducts: function () {
-      let searchPro = this.items;
-      if (this.search != "" && this.search) {
+      let searchPro = this.$store.state.items;
+      if (this.search != '' && this.search) {
         searchPro = searchPro.filter((i) => {
           return i.name.toUpperCase().includes(this.search.toUpperCase());
         });
@@ -67,27 +47,33 @@ export default {
     },
   },
   mounted() {
-    // axios
-    //   .get('https://zadani.zkus.it/api/products')
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
+    //   axios
+    //     .get('https://zadani.zkus.it/api/products')
+    //     .then(function (response) {
+    //       console.log(response);
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error);
+    //     });
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.produkty__zobrazeni {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
+.produkty {
+  h1 {
+    font-size: 2rem;
+  }
 
-  &__produkt {
+  &__zobrazeni {
+    display: flex;
+    flex-wrap: wrap;
     width: 100%;
-    height: 100%;
+
+    &__produkt {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 </style>

@@ -48,8 +48,6 @@
 </template>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
-
 .homepage {
   width: 100%;
 }
@@ -57,11 +55,11 @@ header {
   width: 100%;
   max-width: 1352px;
   height: 19rem;
-  background-image: url("~@/assets/Tintoy_shop.png");
+  background-image: url('~@/assets/Tintoy_shop.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: bottom;
-  display: flex;
+  display: flex !important;
   align-items: flex-end;
   justify-content: center;
 
@@ -81,7 +79,7 @@ header {
   h1 {
     color: white;
     z-index: 10;
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 3rem;
     margin: 1rem;
   }
@@ -94,7 +92,7 @@ main {
 
   h3 {
     font-size: 1.5rem;
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     line-height: 3rem;
     margin: 1.5rem 0 1rem 0;
     font-weight: 500;
@@ -102,7 +100,7 @@ main {
   }
 
   .homepage__main__text {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 400;
     font-size: 0.87rem;
     line-height: 1.3rem;
@@ -111,7 +109,7 @@ main {
   }
 
   h4 {
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-size: 1.25rem;
     line-height: 1.87;
@@ -121,6 +119,6 @@ main {
 
 <script>
 export default {
-  name: "Homepage",
+  name: 'Homepage',
 };
 </script>
