@@ -2,7 +2,12 @@
   <div class="cart">
     <h1>Shopping Cart</h1>
     <q-separator class="separator" />
-    <q-pagination v-model="page" :max="2"></q-pagination>
+    <q-pagination
+      v-model="page"
+      active-color="grey-10"
+      color="white"
+      :max="2"
+    ></q-pagination>
     <q-card v-if="this.page === 1">
       <Cartitem
         v-for="product in itemsInCart"
@@ -18,6 +23,8 @@
 </template>
 
 <style lang="scss">
+@import '@/styles/variables.scss';
+
 h1 {
   font-size: 1.5rem;
   font-weight: 500;
@@ -26,12 +33,24 @@ h1 {
 }
 
 .separator {
-  background: #333333;
+  background: $gray;
   width: 90%;
 }
 
 .q-card {
   width: 100%;
+}
+
+.q-pagination {
+  margin-top: 1.5rem;
+  width: 50%;
+  display: flex;
+  button {
+    background: #9ca3af;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+  }
 }
 </style>
 <script>

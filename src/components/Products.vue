@@ -1,9 +1,13 @@
 <template>
-  <main class="produkty">
-    <h1>Produkty</h1>
-    <section class="produkty__zobrazeni">
-      <input class="produkty__zobrazeni__search" v-model="search" />
-      <p>Hledani: {{ search }}</p>
+  <main class="prod-container">
+    <h1>FEATURED COLLECTION</h1>
+    <hr />
+    <section class="prod-container__list">
+      <input
+        class="prod-container__list__search"
+        v-model="search"
+        placeholder="&#xF002; Search"
+      />
       <Product
         v-for="item in searchProducts"
         v-bind:key="item.name"
@@ -44,33 +48,39 @@ export default {
       return searchPro;
     },
   },
-  mounted() {
-    //   axios
-    //     .get('https://zadani.zkus.it/api/products')
-    //     .then(function (response) {
-    //       console.log(response);
-    //     })
-    //     .catch(function (error) {
-    //       console.log(error);
-    //     });
-  },
 };
 </script>
 
-<style lang="scss" scoped>
-.produkty {
+<style lang="scss">
+@import '@/styles/variables.scss';
+.prod-container {
+  display: flex;
+
   h1 {
-    font-size: 2rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.87rem;
+    margin-top: 4rem;
   }
 
-  &__zobrazeni {
+  hr {
+    background-color: $gray;
+    width: 90%;
+  }
+
+  &__list {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     flex-wrap: wrap;
     width: 100%;
+    margin-top: 2rem;
 
-    &__produkt {
-      width: 100%;
-      height: 100%;
+    &__search {
+      width: 90%;
+      height: 2.6rem;
+      border-radius: 6px;
+      border: 1px solid #9ca3af;
     }
   }
 }
