@@ -4,8 +4,6 @@
     <section class="produkty__zobrazeni">
       <input class="produkty__zobrazeni__search" v-model="search" />
       <p>Hledani: {{ search }}</p>
-      <button v-on:click="reset">Reset</button>
-      <button>Clear cart</button>
       <Product
         v-for="item in searchProducts"
         v-bind:key="item.name"
@@ -30,10 +28,10 @@ export default {
     };
   },
   methods: {
-    reset() {
-      localStorage.vuex = {};
-      //localStorage.vuex.products = [];
-    },
+    // in case of using persistate, this delete the localStorage vuex object
+    // reset() {
+    //   localStorage.vuex = {};
+    // },
   },
   computed: {
     searchProducts: function () {

@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import createPersistedState from 'vuex-persistedstate';
+// import createPersistedState from 'vuex-persistedstate';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  plugins: [createPersistedState()],
+  // plugins: [createPersistedState()],
   state: {
     items: [
       {
@@ -31,10 +31,10 @@ export default new Vuex.Store({
       },
     ],
     products: [],
+    contactDetails: {},
   },
   getters: {
     itemsInCart: (state) => {
-      console.log(state.products);
       return state.products;
     },
   },
@@ -52,13 +52,27 @@ export default new Vuex.Store({
         });
       }
     },
-    remove: (state, payload) => {
+    subtract: (state, payload) => {
       let minus = state.products[payload].quantity;
       if (minus > 0) {
         state.products[payload].quantity--;
       } else {
         state.products[payload].quantity = 0;
       }
+    },
+    remove: (state, payload) => {
+      state.products.splice(
+        state.products.findIndex((item) => item.id === payload),
+        1
+      );
+    },
+    addContact: (state, data) => {
+      state.contactDetails = Object.assign({}, data);
+      console.log(state.contactDetails);
+    },
+    restart: (state) => {
+      state.products = [];
+      state.contactDetails = {};
     },
   },
   actions: {},
