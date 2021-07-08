@@ -9,25 +9,29 @@ export default new Vuex.Store({
   state: {
     items: [
       {
-        id: 0,
-        quantity: 0,
-        name: 'prvni',
-        popis: 'Lorem ipsum prvni',
-        price: 49,
-      },
-      {
         id: 1,
-        quantity: 0,
-        name: 'druhy',
-        popis: 'Lorem ipsum druhy',
-        price: 29,
+        title:
+          'Stormtrooper - Lego [středně limitovaná edice, která není až tak vzácná]',
+        description:
+          'Lego stormtrooper. Vyznačuje se tím, že se nedovede nikam trefit.',
+        imageUrl: 'https://zadani.zkus.it/img/ship-item-01.jpg',
+        price: 1580,
       },
       {
         id: 2,
-        quantity: 0,
-        name: 'treti',
-        popis: 'Lorem ipsum treti',
-        price: 89,
+        title: 'Bolek a Lolek',
+        description:
+          'Bolek a Lolek - klasické retro ve vinylovém provedení. Ocení každý sběratel, kterému je více než 40 let. 😉 (obsahuje obě figurky)',
+        imageUrl: 'https://zadani.zkus.it/img/ship-item-02.jpg',
+        price: 19999,
+      },
+      {
+        id: 3,
+        title: 'Pink Dino',
+        description:
+          'Na pomezí vánoční ozdoby a velkého kýče je tento růžový tyranosaurus, který může díky své nízké hmotnosti viset prakticky na kterékoliv větvičce vašeho tématického stromku.',
+        imageUrl: 'https://zadani.zkus.it/img/ship-item-03.jpg',
+        price: 2980,
       },
     ],
     products: [],
@@ -40,17 +44,22 @@ export default new Vuex.Store({
   },
   mutations: {
     add: (state, payload) => {
-      if (state.products.some((data) => data.id === payload)) {
-        state.products[payload].quantity++;
-      } else {
+      let findItem = state.products.findIndex(
+        (data) => data.id === payload + 1
+      );
+      if (findItem === -1) {
         state.products.push({
           id: state.items[payload].id,
           quantity: 1,
-          name: state.items[payload].name,
-          popis: state.items[payload].popis,
+          title: state.items[payload].title,
+          description: state.items[payload].description,
+          imageUrl: state.items[payload].imageUrl,
           price: state.items[payload].price,
         });
+      } else {
+        state.products[payload].quantity++;
       }
+      console.log(state.products);
     },
     subtract: (state, payload) => {
       let minus = state.products[payload].quantity;

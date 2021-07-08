@@ -1,3 +1,13 @@
 $Poppins: 'Poppins', sans-serif;
 
+$one-and-half: 1.5rem;
+
 $gray: #333333;
+$light-gray: #9ca3af;
+$price-red: #ef4444;
+$background-color: #f9f9f9;
+
+.flex {
+  display: flex;
+  flex-direction: column;
+}

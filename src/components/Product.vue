@@ -1,10 +1,19 @@
 <template>
-  <article class="produkty__zobrazeni__produkt">
-    <h3>{{ item.name }}</h3>
-    <p>{{ item.popis }}</p>
-    <p>{{ item.quantity }}</p>
-    <p>${{ item.price }}</p>
-    <button v-on:click="add">Buy it now</button>
+  <article>
+    <h3>{{ item.title }}</h3>
+    <img :src="item.imageUrl" />
+    <p class="prod-container__list__card__description">
+      {{ item.description }}
+    </p>
+    <p class="prod-container__list__card__price">${{ item.price }}</p>
+    <p class="prod-container__list__card__price--woVAT">
+      <span class="wo-text">Without VAT</span> ${{
+        (item.price / 1.166).toFixed(2)
+      }}
+    </p>
+    <button class="prod-container__list__card__btn" v-on:click="add">
+      BUY IT NOW
+    </button>
   </article>
 </template>
 <script>
@@ -13,11 +22,12 @@ export default {
   data() {
     return {};
   },
-  props: ['item'],
+  props: ['item', 'index'],
   methods: {
     add() {
-      this.$store.commit('add', this.item.id);
+      this.$store.commit('add', this.index);
     },
   },
 };
 </script>
+<style lang="scss"></style>

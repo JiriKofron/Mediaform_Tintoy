@@ -66,7 +66,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background-color: #f9f9f9;
+  background-color: $background-color;
   font-size: 16px;
   margin: 0;
   padding: 0;
@@ -117,7 +117,7 @@ body {
 
 footer {
   font-size: 0.75rem;
-  margin: 2.1rem auto;
+  margin: 0 0 2.1rem 0;
 }
 </style>
 

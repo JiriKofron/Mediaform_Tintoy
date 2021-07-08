@@ -4,7 +4,7 @@
       <h1>Tintoy Shop</h1>
       <div class="header__gradient"></div>
     </header>
-    <main class="homepage__main">
+    <main class="flex homepage__main">
       <h3>Welcome to Tintoy Shop!</h3>
       <section class="homepage__main__text">
         <p>
@@ -91,12 +91,10 @@ header {
 }
 
 main {
-  display: flex;
-  flex-direction: column;
   align-items: center;
 
   h3 {
-    font-size: 1.5rem;
+    font-size: $one-and-half;
     font-family: $Poppins;
     line-height: 3rem;
     margin: 1.5rem 0 1rem 0;
