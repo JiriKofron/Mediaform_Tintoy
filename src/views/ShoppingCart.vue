@@ -1,18 +1,8 @@
 <template>
-  <div class="cart">
+  <div class="cart-container">
     <Cart />
   </div>
 </template>
-<style lang="scss">
-.cart {
-  width: 100%;
-  height: 90vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-}
-</style>
 
 <script>
 import Cart from '@/components/Cart.vue';
@@ -27,3 +17,16 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.cart-container {
+  width: 100%;
+  min-height: 90vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 2rem;
+}
+</style>

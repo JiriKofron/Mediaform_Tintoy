@@ -15,7 +15,8 @@ export default new Vuex.Store({
         description:
           'Lego stormtrooper. Vyznačuje se tím, že se nedovede nikam trefit.',
         imageUrl: 'https://zadani.zkus.it/img/ship-item-01.jpg',
-        price: 1580,
+        price: 100,
+        //1580
       },
       {
         id: 2,
@@ -23,7 +24,8 @@ export default new Vuex.Store({
         description:
           'Bolek a Lolek - klasické retro ve vinylovém provedení. Ocení každý sběratel, kterému je více než 40 let. 😉 (obsahuje obě figurky)',
         imageUrl: 'https://zadani.zkus.it/img/ship-item-02.jpg',
-        price: 19999,
+        price: 200,
+        //19999
       },
       {
         id: 3,
@@ -31,22 +33,26 @@ export default new Vuex.Store({
         description:
           'Na pomezí vánoční ozdoby a velkého kýče je tento růžový tyranosaurus, který může díky své nízké hmotnosti viset prakticky na kterékoliv větvičce vašeho tématického stromku.',
         imageUrl: 'https://zadani.zkus.it/img/ship-item-03.jpg',
-        price: 2980,
+        price: 50,
+        //2980
       },
     ],
     products: [],
+    total: 0,
     contactDetails: {},
   },
   getters: {
     itemsInCart: (state) => {
       return state.products;
     },
+    getTotal: (state) => {
+      return state.total;
+    },
   },
   mutations: {
     add: (state, payload) => {
-      let findItem = state.products.findIndex(
-        (data) => data.id === payload + 1
-      );
+      let findIndex = payload + 1;
+      let findItem = state.products.findIndex((data) => data.id === findIndex);
       if (findItem === -1) {
         state.products.push({
           id: state.items[payload].id,
@@ -56,24 +62,31 @@ export default new Vuex.Store({
           imageUrl: state.items[payload].imageUrl,
           price: state.items[payload].price,
         });
+        state.total += state.items[payload].price;
       } else {
-        state.products[payload].quantity++;
+        state.products[findItem].quantity++;
+        state.total += state.items[payload].price;
       }
-      console.log(state.products);
+    },
+    increment: (state, payload) => {
+      state.products[payload].quantity++;
+      state.total += state.products[payload].price;
     },
     subtract: (state, payload) => {
       let minus = state.products[payload].quantity;
       if (minus > 0) {
         state.products[payload].quantity--;
+        state.total -= state.products[payload].price;
       } else {
         state.products[payload].quantity = 0;
       }
     },
     remove: (state, payload) => {
-      state.products.splice(
-        state.products.findIndex((item) => item.id === payload),
-        1
-      );
+      let findIndex = state.products.findIndex((item) => item.id === payload);
+      let removeTotal =
+        state.products[findIndex].price * state.products[findIndex].quantity;
+      state.total -= removeTotal;
+      state.products.splice(findIndex, 1);
     },
     addContact: (state, data) => {
       state.contactDetails = Object.assign({}, data);

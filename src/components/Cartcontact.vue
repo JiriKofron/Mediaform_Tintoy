@@ -1,5 +1,5 @@
 <template>
-  <q-form @submit.prevent="onSubmit" class="q-gutter-md">
+  <q-form @submit.prevent="onSubmit" class="q-gutter-md form flex">
     <q-input
       v-model.trim="$v.user.firstname.$model"
       label="Enter your first name"
@@ -91,6 +91,7 @@ export default {
       if (this.$v.$invalid) {
         console.log('chyba');
         console.log(this.$v.$invalid);
+        alert('nelze odeslat!');
       } else {
         console.log(this.user);
         this.$store.commit('addContact', this.user);
@@ -110,3 +111,24 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+@import '@/styles/variables.scss';
+@import '@/styles/mixin.scss';
+
+.form {
+  align-items: center;
+  margin-top: 2.5rem;
+}
+
+.q-input {
+  width: 85%;
+  min-width: 20.5rem;
+  .q-field__native,
+  .q-field__append {
+    background: white;
+    border-radius: 6px;
+    padding: 0 1rem;
+  }
+}
+</style>

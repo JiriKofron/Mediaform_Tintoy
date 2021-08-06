@@ -14,7 +14,7 @@
         <p class="cart__cartitem__container__quantity__num">
           {{ product.quantity }}
         </p>
-        <button v-on:click="add">+</button>
+        <button v-on:click="increment">+</button>
       </div>
       <div class="cart__cartitem__container__price">
         <p>PRICE W/O VAT</p>
@@ -25,6 +25,27 @@
     <q-separator class="separator__pale" />
   </div>
 </template>
+
+<script>
+export default {
+  name: 'Cartitem',
+  data() {
+    return {};
+  },
+  props: ['product', 'index'],
+  methods: {
+    increment() {
+      this.$store.commit('increment', this.index);
+    },
+    subtract() {
+      this.$store.commit('subtract', this.index);
+    },
+    remove() {
+      this.$store.commit('remove', this.product.id);
+    },
+  },
+};
+</script>
 <style lang="scss">
 @import '@/styles/variables.scss';
 
@@ -138,25 +159,3 @@
   }
 }
 </style>
-
-<script>
-export default {
-  name: 'Cartitem',
-  data() {
-    return {};
-  },
-  props: ['product', 'index'],
-  methods: {
-    add() {
-      this.$store.commit('add', this.index);
-    },
-    subtract() {
-      this.$store.commit('subtract', this.index);
-    },
-    // remove using this.product.id because it needs id value in case that array index change due to adding and removing items
-    remove() {
-      this.$store.commit('remove', this.product.id);
-    },
-  },
-};
-</script>

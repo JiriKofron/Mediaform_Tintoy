@@ -53,12 +53,33 @@
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {};
+  },
+  computed: {
+    cartTotalItems: function () {
+      let sum = 0;
+      for (let i = 0; i < this.$store.state.products.length; i++) {
+        sum += this.$store.state.products[i].quantity;
+      }
+      return sum;
+    },
+  },
+};
+</script>
+
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
 @import '@/styles/variables.scss';
+@import '@/styles/mixin.scss';
 
 body {
   margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #app {
@@ -72,7 +93,12 @@ body {
   padding: 0;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
+  max-width: 1352px;
+  position: relative;
+  overflow-x: hidden;
 }
 
 #nav {
@@ -80,6 +106,10 @@ body {
   right: 1.4rem;
   top: 2rem;
   z-index: 20;
+
+  @include breakpoint(phablet) {
+    right: 7.45rem;
+  }
 
   a {
     font-family: $Poppins;
@@ -120,20 +150,3 @@ footer {
   margin: 0 0 2.1rem 0;
 }
 </style>
-
-<script>
-export default {
-  data() {
-    return {};
-  },
-  computed: {
-    cartTotalItems: function () {
-      let sum = 0;
-      for (let i = 0; i < this.$store.state.products.length; i++) {
-        sum += this.$store.state.products[i].quantity;
-      }
-      return sum;
-    },
-  },
-};
-</script>

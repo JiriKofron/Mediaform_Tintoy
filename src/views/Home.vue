@@ -5,12 +5,6 @@
   </div>
 </template>
 
-<style lang="scss">
-.container {
-  width: 100%;
-}
-</style>
-
 <script>
 // @ is an alias to /src
 import Homepage from '@/components/Homepage.vue';
@@ -24,3 +18,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss">
+.container {
+  width: 100%;
+}
+</style>
