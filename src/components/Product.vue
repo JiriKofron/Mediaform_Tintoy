@@ -31,6 +31,7 @@ export default {
   },
   props: ['item', 'index'],
   methods: {
+    // add product to the cart after clicking "Add" button
     add() {
       this.$store.commit('add', this.index);
     },

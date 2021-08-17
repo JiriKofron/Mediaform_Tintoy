@@ -82,6 +82,7 @@ export default {
     Cartcontact,
   },
   methods: {
+    //functions for buttons click to go back and further, the inner text of the buttons depends on actual page position - based on output of btnText() function in computed section
     goBack: function () {
       if (this.page === 1) {
         this.$router.push('/');
@@ -101,12 +102,15 @@ export default {
     },
   },
   computed: {
+    // load items in cart that was already put into cart on Product page / component
     itemsInCart() {
       return this.$store.getters.itemsInCart;
     },
+    // total sum of items in cart
     sums() {
       return this.$store.getters.getTotal.toFixed(2);
     },
+    // total sum without 21% VAT (according to Czech law)
     woSum() {
       this.withoutVAT = (this.sums / 1.166).toFixed(2);
       return this.withoutVAT;

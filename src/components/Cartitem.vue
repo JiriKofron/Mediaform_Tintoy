@@ -34,12 +34,14 @@ export default {
   },
   props: ['product', 'index'],
   methods: {
+    // methods for incrementing and/or substract number of items in card, after clicking on button on any product.
     increment() {
       this.$store.commit('increment', this.index);
     },
     subtract() {
       this.$store.commit('subtract', this.index);
     },
+    //remove product from cart completely
     remove() {
       this.$store.commit('remove', this.product.id);
     },

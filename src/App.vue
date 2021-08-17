@@ -60,6 +60,7 @@ export default {
   },
   computed: {
     cartTotalItems: function () {
+      // showing and counting the total number of items in cart that is visible in cart icon on the main page
       let sum = 0;
       for (let i = 0; i < this.$store.state.products.length; i++) {
         sum += this.$store.state.products[i].quantity;

@@ -38,6 +38,7 @@ export default {
     //   localStorage.vuex = {};
     // },
   },
+  // computed function for searching product based on typing the name to the search field, the database of products is searched after each key press. It can be unefficient and data consuming in large databse or in api calls to backend database, but in this case with just few items it is fast and doesn't create any complication or slowing down the app
   computed: {
     searchProducts: function () {
       let searchPro = this.$store.state.items;
